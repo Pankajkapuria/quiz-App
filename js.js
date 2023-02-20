@@ -5,7 +5,8 @@ const qustions = [
         'b': 'css',
         'c': 'java',
         'd': 'php',
-        'currect':'a'
+        'currect':'a',
+        'quctionchack':'true'
     },
     {
         'qus': 'How many passes does an insertion sort algorithm consist of?',
@@ -13,7 +14,8 @@ const qustions = [
         'b': 'N-1',
         'c': 'N+1',
         'd': 'N2',
-        'currect':'b'
+        'currect':'b',
+        'quctionchack':'true'
     },
     {
         'qus': 'Which of the following algorithm implementations is similar to that of an insertion sort?',
@@ -21,7 +23,8 @@ const qustions = [
         'b': 'Quick sort',
         'c': 'Merge sort',
         'd': 'Radix sort',
-        'currect':'a'
+        'currect':'a',
+        'quctionchack':'true'
     },
     {
         'qus': 'Who invented Java Programming?',
@@ -29,7 +32,8 @@ const qustions = [
         'b': 'James Gosling',
         'c': 'Dennis Ritchie',
         'd': 'Bjarne Stroustrupphp',
-        'currect':'a'
+        'currect':'a',
+        'quctionchack':'true'
     },
     {
         'qus': 'Which statement is true about Java?',
@@ -37,7 +41,8 @@ const qustions = [
         'b': 'Java is a sequence-dependent programming language',
         'c': 'Java is a platform-dependent programming language',
         'd': 'Java is a platform-independent programming language',
-        'currect':'d'
+        'currect':'d',
+        'quctionchack':'true'
     },
     {
         'qus': 'Which type of errors are flagged by Compilers ?',
@@ -45,7 +50,8 @@ const qustions = [
         'b': 'Syntax errors',
         'c': 'Both (A) and (B)',
         'd': 'None of these',
-        'currect':'b'
+        'currect':'b',
+        'quctionchack':'true'
     },
     {
         'qus': 'who is malu ram setting ?',
@@ -53,7 +59,8 @@ const qustions = [
         'b': 'leeza lodha',
         'c': 'mahima',
         'd': 'malu is single',
-        'currect':'b'
+        'currect':'b',
+        'quctionchack':'true'
     },  
     {
         'qus': 'Malu is aunty or not',
@@ -61,7 +68,8 @@ const qustions = [
         'b': 'no',
         'c': 'randi',
         'd': '(a) & (c)',
-        'currect':'d'
+        'currect':'d',
+        'quctionchack':'true'
     },
     {
         'qus': 'who is best friend malu ?',
@@ -69,7 +77,8 @@ const qustions = [
         'b': 'naresh thapa',
         'c': 'malu ka koi friend nhi h',
         'd': '(a) & (b)',
-        'currect':'d'
+        'currect':'d',
+        'quctionchack':'true'
     },
     {
         'qus': 'Malu rate ?',
@@ -77,7 +86,8 @@ const qustions = [
         'b': '200-300',
         'c': '300-400',
         'd': 'free',
-        'currect':'d'
+        'currect':'d',
+        'quctionchack':'true'
     },
 
 ]
@@ -91,13 +101,21 @@ var qustionsNumber = 0;
 const input = document.getElementsByTagName('input');
 const inputOPtion=document.querySelectorAll('.inputOPtion');
 const box=document.getElementById('box');
+const showAnswer=document.getElementsByClassName('answer')[0];
+const answercurrect=document.getElementById('answercurrect');
+const ansbox=document.getElementsByClassName('ansbox')[0];
+const ansboxanswer=document.getElementsByClassName('ansboxanswer')[0];
+const cackanswer=document.getElementsByClassName('cackanswer')[0];
+const okbtn=document.getElementsByClassName('okbtn')[0];
+const rightQuestion=document.getElementById('rightQuestion');
+const wrongQuestion=document.getElementById('wrongQuestion');
 
 var right=0;
 var wrong =0;
-
 const total=qustions.length;
 
 const reset = () => {
+    summit.style.display='block';
     inputOPtion.forEach((input)=>{
         input.checked=false;
     })
@@ -111,14 +129,25 @@ var quizeend=()=>{
 
     `    
 }
+
 var summitQuize=()=>{
     const data=qustions[qustionsNumber].currect;
     const yourans=ans();
     if(data===yourans){
-        right=right+1;
+        if(qustions[qustionsNumber].quctionchack=='true'){
+            right=right+1;
+        }
+        
+        // cackanswer.innerHTML=
+        cackanswer.style.display='block';
+        box.style.display='none';
+        rightQuestion.innerHTML='your answer is currect';
     }
     else{
         wrong=wrong+1;
+        cackanswer.style.display='block';
+        box.style.display='none';
+        rightQuestion.innerHTML='your answer is wrong';
     }
     qustionsNumber=qustionsNumber+1;
     loadQuestio();
@@ -149,8 +178,10 @@ const loadQuestio = () => {
     }
 }
 
-
-
+okbtn.addEventListener('click',()=>{
+    cackanswer.style.display='none';
+    box.style.display='block';
+})
 
 summit.addEventListener('click', () => {
     summitQuize();
@@ -188,7 +219,10 @@ Prev.addEventListener('click', () => {
     if(qustionsNumber===total){
         return quizeend();
     }
-
+    else if(qustionsNumber<=0){
+        qustionsNumber=0;
+        loadQuestio();
+    }
     else {
         qustionsNumber = qustionsNumber - 1;
         loadQuestio();
@@ -198,3 +232,19 @@ Prev.addEventListener('click', () => {
 
 
 loadQuestio();
+
+
+
+showAnswer.addEventListener('click',()=>{
+    qustions[qustionsNumber].quctionchack='false';
+    box.style.display='none';
+    ansbox.style.display='block';
+    answercurrect.innerHTML=`${qustions[qustionsNumber].currect} is currect answer`
+    // summit.style.display='none';
+})
+
+
+ansboxanswer.addEventListener('click',()=>{
+    ansbox.style.display='none';
+    box.style.display='block';
+})

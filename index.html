@@ -11,23 +11,25 @@
     
     <div class="main">
         <div id="box">
-            <h2 id="h2" >1) This is dummy Qustion</h2>
+            <h2 id="h2" ></h2>
             <div class="option">
                 <input class="inputOPtion" id="option1" type="radio" name="option" value="a">
-                <label for="option1">option 1</label>
+                <label for="option1"></label>
             </div>
             <div class="option">
                 <input class="inputOPtion" id="option2" type="radio" name="option" value="b">
-                <label for="option2">option 2</label>
+                <label for="option2"></label>
             </div>
             <div class="option">
                 <input class="inputOPtion" id="option3" type="radio" name="option" value="c">
-                <label for="option3">option 3</label>
+                <label for="option3"></label>
             </div>
             <div class="option">
                 <input class="inputOPtion" id="option4" type="radio" name="option" value="d">
-                <label for="option4">option 4</label>
+                <label for="option4"></label>
             </div>
+
+            <button class="btn answer">answer</button>
 
             <div class="button">
                 <button id="Prev" class="btn">Prev</button>
@@ -35,6 +37,21 @@
                 <button id="next" class="btn">Next</button>
             </div>
         </div>
+         
+
+        <div class="ansbox">
+            <h3><h3 id="answercurrect"></h3>
+                <h3>Your score not increase after show answer</h3>
+            </h3>
+            <button class="btn answer ansboxanswer">hide answer</button>
+        </div>
+
+        <div class="cackanswer">
+            <h3 id="rightQuestion"></h3>
+            <h3 id="wrongQuestion"></h3>
+            <button class="btn okbtn">ok</button>
+        </div>
+
     </div>
 
 
