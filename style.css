@@ -27,6 +27,7 @@ body {
     border-radius: 10px;
     padding: 10px 21px;
     position: relative;
+    /* display: none; */
 }
 
 .option {
@@ -89,3 +90,9 @@ body {
     display: none;
 }
 
+.okbtn{
+    position: absolute;
+    bottom: 20px;
+    left: 300px;
+    padding: 5px 43px;
+}
